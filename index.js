@@ -1,7 +1,9 @@
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const exphbs  = require('express-handlebars');
+const express     = require('express');
+const path        = require('path');
+const exphbs      = require('express-handlebars');
+const homeRoutes  = require('./routes/home');
+const addRoutes   = require('./routes/add');
+const gamesRoutes = require('./routes/games');
 
 const app = express();
 
@@ -16,26 +18,10 @@ app.set('views', 'views');
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-  res.render('index', {
-    title: 'Главная страница',
-    isHome: true
-  });
-})
-
-app.get('/games', (req, res) => {
-  res.render('games', {
-    title: 'Каталог игр',
-    isGames: true
-  });
-})
-
-app.get('/add', (req, res) => {
-  res.render('add', {
-    title: 'Добавить игру',
-    isAdd: true
-  });
-})
+//Routes
+app.use('/', homeRoutes);
+app.use('/add', addRoutes);
+app.use('/games', gamesRoutes);
 
 const PORT = process.env.PORT || 3000;
 
