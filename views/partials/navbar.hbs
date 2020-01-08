@@ -1,0 +1,24 @@
+  <nav>
+    <div class='nav-wrapper deep-purple darken-4'>
+      <a href='#' class='brand-logo'>Board Games</a>
+      <ul id='nav-mobile' class='right hide-on-med-and-down'>
+        {{#if isHome}}
+          <li class='active'><a href='/'>Главная</a></li>
+        {{else}}
+          <li><a href='/'>Главная</a></li>
+        {{/if}}
+
+        {{#if isGames}}
+          <li class='active'><a href='/games'>Игры</a></li>
+        {{else}}
+          <li><a href='/games'>Игры</a></li>
+        {{/if}}
+
+        {{#if isAdd}}
+          <li class='active'><a href='/add'>Добавить игру</a></li>
+        {{else}}
+          <li><a href='/add'>Добавить игру</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
