@@ -6,6 +6,12 @@ router.get('/', (req, res) => {
     title: 'Добавление игры',
     isAdd: true
   });
-})
+});
+
+router.post('/', (req, res) => {
+  console.log(req.body);
+
+  res.redirect('/games');
+});
 
 module.exports = router;
