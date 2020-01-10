@@ -21,4 +21,23 @@ router.get('/:id', async (req, res) => {
   });
 });
 
+router.get('/:id/edit', async (req, res) => {
+  if (!req.query.allow) {
+    return res.redirect('index');
+  }
+
+  const game = await Game.getById(req.params.id);
+
+  res.render('game-edit', {
+    title: `Редактирование ${game.title}`,
+    game
+  });
+});
+
+router.post('/edit', async (req, res) => {
+  await Game.update(req.body);
+
+  res.redirect('/games');
+})
+
 module.exports = router;

@@ -41,6 +41,24 @@ class Game {
     })
   }
 
+  static async update(game) {
+    const games = await Game.getAll();
+    const idx   = games.findIndex(g => g.id == game.id);
+
+    games[idx] = game;
+
+    return new Promise((resolve, reject) => {
+      fs.writeFile(
+        path.join(__dirname, '..', 'data', 'games.json'),
+        JSON.stringify(games),
+        err => {
+          if (err) reject(err);
+          else resolve();
+        }
+      );
+    })
+  }
+
   /**
    * Получение всех записей
    */
@@ -66,7 +84,7 @@ class Game {
   static async getById(id) {
     const games = await Game.getAll();
 
-    return games.find(game => game.id == id);
+    return games.find(g => g.id == id);
   }
 }
 
