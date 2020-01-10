@@ -1,0 +1,25 @@
+@import 'label.css';
+@import 'link.css';
+
+.nav-wrapper {
+  padding: 0 2rem;
+}
+.price {
+  font-size: 2rem;
+}
+.game {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.game__title {
+  margin-bottom: 2rem;  
+}
+.game__image {
+  max-width: 600px;
+  height: auto;
+}
+.game__price_big {
+  font-size: 2.5rem;
+}

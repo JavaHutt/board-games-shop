@@ -10,6 +10,9 @@ class Game {
     this.id    = uuid();
   }
 
+  /**
+   * Возвращает объект со всеми полями
+   */
   toJSON() {
     return {
       title: this.title,
@@ -19,6 +22,9 @@ class Game {
     };
   }
 
+  /**
+   * Сохраняет запись
+   */
   async save() {
     const games = await Game.getAll();
     games.push(this.toJSON());
@@ -35,6 +41,9 @@ class Game {
     })
   }
 
+  /**
+   * Получение всех записей
+   */
   static getAll() {
     return new Promise((resolve, reject) => {
       fs.readFile(
@@ -48,6 +57,16 @@ class Game {
         }
       );
     })
+  }
+
+  /**
+   * Получить одну запись по id
+   * @param {String} id 
+   */
+  static async getById(id) {
+    const games = await Game.getAll();
+
+    return games.find(game => game.id == id);
   }
 }
 
