@@ -12,9 +12,13 @@
             <span class='card-title'>{{ title }}</span>
             <p class='price'>{{ price }}</p>
           </div>
-          <div class='card-action'>
+          <div class='card-action actions'>
             <a href='/games/{{ id }}' target='_blank'>Посмотреть игру</a>
             <a href='/games/{{ id }}/edit?allow=true'>Редактировать</a>
+            <form action='/cart/add' method='post'>
+              <input type='hidden' name='id' value='{{ id }}'>
+              <button type='submit' class='btn btn-primary'>Добавить в корзину</button>
+            </form>
           </div>
         </div>
       </div>
