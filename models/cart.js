@@ -32,6 +32,28 @@ class Cart {
     });
   }
 
+  static async remove(id) {
+    const cart = await Cart.fetch();
+
+    const idx = cart.games.findIndex(c => c.id == id);
+    const game = cart.games[idx];
+
+    if (game.count == 1) {
+      cart.games = cart.games.filter(c => c.id != id);
+    } else {
+      cart.games[idx].count--;
+    }
+
+    cart.price -= +game.price;
+
+    return new Promise((resolve, reject) => {
+      fs.writeFile(p, JSON.stringify(cart), err => {
+        if (err) reject(err);
+        else resolve(cart);
+      })
+    });
+  }
+
   static async fetch() {
     return new Promise((resolve, reject) => {
       fs.readFile(p, 'utf-8', (err, content) => {
