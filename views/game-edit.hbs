@@ -1,6 +1,6 @@
 <h1>Редактировать игру {{ game.title }}</h1>
 
-<form action='/games/edit' method='post'>
+<form action='/games/edit' method='post' class='game__form'>
   <div class='input-field'>
     <input id='title' name='title' type='text' class='validate' value='{{ game.title }}' required>
     <label for='title'>Название игры</label>
@@ -19,5 +19,10 @@
 
   <input type='hidden' name='id' value='{{ game.id }}'>
 
-  <button class='btn btn-primary deep-purple darken-4'>Изменить</button>
+  <button type='submit' class='btn btn-primary deep-purple darken-4'>Изменить</button>
+</form>
+
+<form action='/games/remove' method='post'>
+  <input type='hidden' name='id' value='{{ game.id }}'>
+  <button class='btn red'>Удалить</button>
 </form>

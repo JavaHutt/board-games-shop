@@ -4,12 +4,13 @@ const router     = Router();
 
 router.get('/', async (req, res) => {
   const games = await Game.find();
+
   res.render('games', {
     title: 'Игры',
     isGames: true,
     games
   });
-});
+})
 
 router.get('/:id', async (req, res) => {
   const game = await Game.findById(req.params.id);
@@ -19,7 +20,7 @@ router.get('/:id', async (req, res) => {
     title: `Игра ${game.title}`,
     game
   });
-});
+})
 
 router.get('/:id/edit', async (req, res) => {
   if (!req.query.allow) {
@@ -32,7 +33,7 @@ router.get('/:id/edit', async (req, res) => {
     title: `Редактирование ${game.title}`,
     game
   });
-});
+})
 
 router.post('/edit', async (req, res) => {
   const { id } = req.body;
@@ -41,6 +42,15 @@ router.post('/edit', async (req, res) => {
   await Game.findByIdAndUpdate(id, req.body);
 
   res.redirect('/games');
+})
+
+router.post('/remove', async (req, res) => {
+  try {
+    await Game.deleteOne({ _id: req.body.id });
+    res.redirect('/games');
+  } catch(e) {
+    console.log(e);
+  }
 })
 
 module.exports = router;

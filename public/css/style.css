@@ -28,3 +28,6 @@
   align-items: center;
   justify-content: space-between;
 }
+.game__form {
+  margin-bottom: 2rem;
+}

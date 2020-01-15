@@ -33,7 +33,11 @@ async function start() {
   const url = 'mongodb+srv://javahutt:NakU93zdIc@cluster0-9voh5.mongodb.net/board-games-shop';
 
   try {
-    await mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
+    await mongoose.connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
+    });
   
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
