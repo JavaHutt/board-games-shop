@@ -13,11 +13,15 @@ router.post('/', async (req, res) => {
   const title = req.body.title;
   const price = req.body.price;
   const image = req.body.image;
-  const game  = new Game(title, price, image);
+  const game  = new Game({title, price, image});
 
-  await game.save();
+  try {
+    await game.save();
 
-  res.redirect('/games');
+    res.redirect('/games');
+  } catch(e) {
+    console.log(e);
+  }
 });
 
 module.exports = router;
