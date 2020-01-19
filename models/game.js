@@ -9,7 +9,11 @@ const game = new Schema({
     type: Number,
     required: true,
   },
-  image: String
+  image: String,
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 module.exports = model('Game', game);

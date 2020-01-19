@@ -10,10 +10,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const title = req.body.title;
-  const price = req.body.price;
-  const image = req.body.image;
-  const game  = new Game({title, price, image});
+  const { title, price, image } = req.body;
+  const userId = req.user;
+  const game  = new Game({ title, price, image, userId });
 
   try {
     await game.save();

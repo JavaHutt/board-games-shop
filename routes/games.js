@@ -3,8 +3,10 @@ const Game       = require('../models/game');
 const router     = Router();
 
 router.get('/', async (req, res) => {
-  const games = await Game.find();
-
+  const games = await Game.find()
+                          .populate('userId', 'email name')
+                          .select('title price image');
+                          
   res.render('games', {
     title: 'Игры',
     isGames: true,
