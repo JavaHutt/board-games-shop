@@ -28,8 +28,6 @@ app.use(async (req, res, next) => {
     console.log(e);
   }
 })
-// const user = User.findById('5e2406c62e993604d4d6b2f6');
-// console.log(user.id);
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
