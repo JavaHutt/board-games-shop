@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const game = new Schema({
+const gameSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -16,4 +16,12 @@ const game = new Schema({
   }
 });
 
-module.exports = model('Game', game);
+gameSchema.method('toClient', function() {
+  const game = this.toObject();
+
+  game.id = game._id;
+  delete game._id;
+  return game;
+})
+
+module.exports = model('Game', gameSchema);
